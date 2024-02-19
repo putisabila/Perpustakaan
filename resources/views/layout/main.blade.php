@@ -33,7 +33,6 @@
         {{-- Close Sidebar Dashboard --}}
 
         {{-- Open Konten Dashboard --}}
-        @include('komponen.konten')
         @yield('container')
         {{-- Close Konten Dashboard --}}
         
