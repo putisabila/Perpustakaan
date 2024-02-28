@@ -24,26 +24,10 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ url('/dashboard') }}" class="nav-link">
+                    <a href="{{ url('/homepetugas') }}" class="nav-link">
                         <i class="nav-icon fas fa-house"></i>
                         <p>
                             Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/petugas')}}" class="nav-link">
-                        <i class="nav-icon fas fa-user-tie"></i>
-                        <p>
-                            Petugas
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/peminjaman')}}" class="nav-link">
-                        <i class="nav-icon fas fa-book-reader"></i>
-                        <p>
-                            Peminjaman
                         </p>
                     </a>
                 </li>
@@ -52,6 +36,14 @@
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Buku
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/peminjaman')}}" class="nav-link">
+                        <i class="nav-icon fas fa-book-reader"></i>
+                        <p>
+                            Peminjaman
                         </p>
                     </a>
                 </li>

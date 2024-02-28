@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\buku;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Http\Request;
 
 class BukuController extends Controller
 {
     public function index(){
-        $buku = Buku::all();
+        $buku = buku::orderBy('id', 'ASC')->paginate(5);
         return view('buku', compact('buku'));
     }
 
@@ -28,6 +29,7 @@ class BukuController extends Controller
         $buku->penulis = $request->penulis;
         $buku->penerbit = $request->penerbit;
         $buku->tahun_terbit = $request->tahun_terbit;
+        $buku->stok = $request->stok;
         $buku->save();
 
         return redirect()->route('buku.index');
@@ -75,5 +77,38 @@ class BukuController extends Controller
             return redirect()->route('buku.index')->with('success', 'Data buku berhasil dihapus');
         }
         return redirect()->route('buku.index')->with('error', 'Data buku tidak ditemukan');
+    }
+
+    public function generatePDF()
+    {
+        $ar_buku = buku::all();
+    
+    // Pastikan ada pengguna yang masuk
+    if(auth()->check()) {
+        $user = auth()->user()->name;
+    } else {
+        $user = "Nama Pengguna Default";
+    }
+
+    $pdf = PDF::loadView('bukupdf', [
+        'ar_buku' => $ar_buku,
+        'user' => $user // Memasukkan $user ke dalam data yang dilewatkan ke view
+    ]);
+
+    return $pdf->stream('laporan-buku.pdf');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $buku = buku::where('judul', 'LIKE', "%$search%")
+            ->orWhere('penulis', 'LIKE', "%$search%")
+            ->orWhere('penerbit', 'LIKE', "%$search%")
+            ->orWhere('tahun_terbit', 'LIKE', "%$search%")
+            ->orderBy('id', 'ASC')
+            ->paginate(5);
+
+        return view('buku', compact('buku'));
     }
 }

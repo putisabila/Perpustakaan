@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bukus', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul', 255);
-            $table->string('penulis', 255);
-            $table->string('penerbit', 255);
-            $table->integer('tahun_terbit');
-            $table->timestamps();
+        Schema::table('bukus', function (Blueprint $table) {
+            $table->integer('stok')->default(0);
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bukus');
+        Schema::table('bukus', function (Blueprint $table) {
+            $table->dropColumn('stok');
+        });
     }
 };

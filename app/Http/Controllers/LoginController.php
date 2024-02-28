@@ -25,8 +25,12 @@ class LoginController extends Controller
 
     public function loginaksi(Request $request)
     {
+        $request->validate([
+            'g-recaptcha-response' => 'required',
+        ]);
+        
         $data = [
-            'username' => $request->input('username'),
+            'email' => $request->input('email'),
             'password' => $request->input('password'),
         ];
     
@@ -36,7 +40,7 @@ class LoginController extends Controller
             if ($user->role === 'admin') {
                 return redirect('homeadmin');
             } elseif ($user->role === 'petugas') {
-                return redirect('homeadmin');
+                return redirect('homepetugas');
             } elseif ($user->role === 'peminjam') {
                 return redirect('homepeminjam');
             }

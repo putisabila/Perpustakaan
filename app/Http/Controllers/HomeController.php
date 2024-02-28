@@ -8,11 +8,16 @@ class HomeController extends Controller
 {
     public function admin()
     {
-        return view('layout.main');
+        return view('komponen.konten');
     }
 
     public function peminjam()
     {
-        return view('homepeminjam');
+        return view('komponen2.konten');
+    }
+
+    public function petugas()
+    {
+        return view('komponen3.konten');
     }
 }

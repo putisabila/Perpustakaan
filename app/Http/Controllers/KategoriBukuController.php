@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\kategoriBuku;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class KategoriBukuController extends Controller
 {
     public function index(){
-        $kategoriBuku = kategoriBuku::all();
+        $kategoriBuku = kategoriBuku::orderBy('nama_kategori', 'ASC')->paginate(5);
         return view('kategoriBuku.kategoriBuku', compact('kategoriBuku'));
     }
 
@@ -69,5 +70,25 @@ class KategoriBukuController extends Controller
             return redirect()->route('kategoribuku.index')->with('success', 'Data buku berhasil dihapus');
         }
         return redirect()->route('kategoribuku.index')->with('error', 'Data buku tidak ditemukan');
+    }
+
+    public function generatePDF()
+    {
+        $kategoribuku = kategoribuku::all();
+
+        $pdf = PDF::loadView('kategoriBuku.kategoriBukupdf', ['kategoriBuku' => $kategoribuku]);
+
+        return $pdf->stream('laporan-kategoribuku.pdf');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $kategoriBuku = kategoribuku::where('nama_kategori', 'LIKE', "%$search%")
+            ->orderBy('nama_kategori', 'ASC')
+            ->paginate(5);
+
+        return view('kategoriBuku.kategoriBuku', compact('kategoriBuku'));
     }
 }

@@ -14,15 +14,37 @@
     <div class="container">
     <div class="card mt-5">
         <div class="card-header">
-          <h2>Edit Data Kategori Buku</h2>
+          <h2>Edit Data Petugas</h2>
         </div>
-        <form action="/editkategoribuku/{{$kategoriBuku->id}}" method="post">
+        <form action="/editpetugas/{{$user->id}}" method="post">
             @csrf
             <div class="card-body">
                     <div class="row mb-3">
-                        <label for="nama_kategori" class="col-sm-2 col-form-label">Nama Kategori</label>
+                      <label for="name" class="col-sm-2 col-form-label">Nama</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" id="name" value="{{$user->name}}" required>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row mb-3">
+                      <label for="username" class="col-sm-2 col-form-label">Username</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="username" class="form-control" id="username" value="{{$user->username}}" required>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row mb-3">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                          <input type="text" name="nama_kategori" class="form-control" id="nama_kategori" value="{{$kategoriBuku->nama_kategori}}" required>
+                          <input type="email" name="email" class="form-control" id="email" value="{{$user->email}}" required>
+                        </div>
+                      </div>
+                      <br>
+                    <br>
+                    <div class="row mb-3">
+                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="alamat" class="form-control" id="alamat" value="{{$user->alamat}}" required>
                         </div>
                       </div>
             </div>

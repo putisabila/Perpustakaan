@@ -7,6 +7,7 @@
 	<title>Login Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         .main-content{
 	width: 50%;
@@ -90,11 +91,7 @@ form{
 	<!-- Main Content -->
 	<div class="container-fluid">
 		<div class="row main-content bg-success text-center">
-			<div class="col-md-4 text-center company__info">
-				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
-				<h4 class="company_title">Your Company Logo</h4>
-			</div>
-			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+			<div class="col-md-20 col-xs-12 col-sm-12 login_form ">
 				<div class="container-fluid">
 					<div class="row">
 						<h2>Log In</h2>
@@ -109,19 +106,18 @@ form{
 					<div class="row">
 						<form control="" class="form-group">
 							<div class="row">
-								<input type="text" name="username" id="username" class="form__input" placeholder="Username">
+								<input type="email" name="email" id="email" class="form__input" placeholder="Email">
 							</div>
 							<div class="row">
 								<!-- <span class="fa fa-lock"></span> -->
 								<input type="password" name="password" id="password" class="form__input" placeholder="Password">
 							</div>
-							<div class="row">
-								<input type="checkbox" name="remember_me" id="remember_me" class="">
-								<label for="remember_me">Remember Me!</label>
-							</div>
-							<div class="row">
-								<input type="submit" value="Submit" class="btn">
-							</div>
+							<form action="/submit-form" method="POST">
+								<div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}" name="g-recaptcha-response"></div>
+								<div class="row">
+                                 <input type="submit" value="Submit" class="btn">
+                             </div>
+							</form>
 						</form>
 					</div>
 					<div class="row">
@@ -133,6 +129,6 @@ form{
 	</div>
 	<!-- Footer -->
 	<div class="container-fluid text-center footer">
-		Coded with &hearts; by <a href="https://bit.ly/yinkaenoch">Yinka.</a></p>
+	  by Puti Sabila &hearts;</p>
 	</div>
 </body>

@@ -1,11 +1,11 @@
-@can('admin')
+@can('petugas')
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Admin</title>
+    <title>Dashboard Petugas</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -26,11 +26,11 @@
 <body>
     <div class="wrapper">
         {{-- Open Navbar Dashboard --}}
-        @include('komponen.navbar')
+        @include('komponen3.navbar')
         {{-- Close Navbar Dashboard --}}
 
         {{-- Open Sidebar Dashboard --}}
-        @include('komponen.sidebar')
+        @include('komponen3.sidebar')
         {{-- Close Sidebar Dashboard --}}
 
         {{-- Open Konten Dashboard --}}
